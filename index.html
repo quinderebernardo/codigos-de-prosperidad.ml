@@ -531,7 +531,7 @@
             }
         </style>
         <div id="division-aAYpWa1942952">
-            <div class="button-pWyRmY6545268 panda">
+            <div class="button-pWyRmY6545268 esconder">
                 <style>
                     a.button-pWyRmY6545268-element {
                         background-color: #00dd00;
@@ -564,7 +564,7 @@
                 </style>
                 <a href="https://pay.kiwify.com.br/AgfYjVh" target="_blank" class="btn button-pWyRmY6545268-element zooming">QUERO SER PAGO PARA ASSISTIR NETFLIX</a>
             </div>
-            <div class="hyperlink-1657814165233XBbbd5 panda">
+            <div class="hyperlink-1657814165233XBbbd5 esconder">
                 <style>
                     .hyperlink-1657814165233XBbbd5-element {
                         font-size: 1.60vw;
@@ -1371,52 +1371,37 @@
             </div>
         </div>
     </div>
+    <!-- VTURB -->
+
     <style>
-        .pand {
+        .esconder {
             display: none
         }
     </style>
-    <script>
-        const SECONDS_TO_DISPLAY = 395;
-        const CLASS_TO_DISPLAY = 'panda';
-        const IFRAME_ID = 'panda-877e5b8a-8e03-41c4-87f6-82859affa'
-        const API_ENDPOINT = 'https://player.pandavideo.com.br/api.v2.js'
 
-        if (!document.querySelector(`script[src='${API_ENDPOINT}']`)) {
-            let s = document.createElement('script');
-            s.src = API_ENDPOINT;
-            s.async = true;
-            document.head.appendChild(s);
-        }
+    <script type="text/javascript">
+        window.onload = function() {
+            /* ALTERE O VALOR 10 PARA OS SEGUNDOS EM QUE AS SEÇÕES VÃO APARECER */
+            var SECONDS_TO_DISPLAY = 1016;
+            var CLASS_TO_DISPLAY = ".esconder";
 
-        window.pandascripttag = window.pandascripttag || [];
-        window.pandascripttag.push(function() {
-            const p = new PandaPlayer(IFRAME_ID, {
-                onReady() {
-                    const el = document.querySelectorAll(`.${CLASS_TO_DISPLAY}`);
-                    p.onEvent(e => {
-                        const type = e.message
-                        if (type === 'panda_timeupdate') {
-                            const {
-                                currentTime,
-                                isMutedIndicator
-                            } = e;
-                            if (isMutedIndicator) return;
-                            if (currentTime < SECONDS_TO_DISPLAY) {
-                                el.forEach(e => {
-                                    e.style.display = 'none'
-                                })
-                            } else if (currentTime > SECONDS_TO_DISPLAY) {
-                                el.forEach(e => {
-                                    e.style.display = 'block'
-                                })
-                            }
-                        }
-                    })
-                }
-            });
-        })
-    </script>
+            /* DAQUI PARA BAIXO NAO PRECISA ALTERAR */
+            var attempts = 0;
+            var elsHiddenList = [];
+            var elsDisplayed = false;
+            var elsHidden = document.querySelectorAll(CLASS_TO_DISPLAY);
+            var alreadyElsDisplayed = localStorage.getItem('alreadyElsDisplayed');
+
+            setTimeout(function() {
+                elsHiddenList = Array.prototype.slice.call(elsHidden);
+            }, 0);
+
+            var showEls = function() {
+                elsDisplayed = true;
+                elsHiddenList.forEach((e) => e.style.display = "block");
+                localStorage.setItem('alreadyElsDisplayed', true)
+            }
+
     <script>
         document.addEventListener("contextmenu", function(e) {
             e.preventDefault();
